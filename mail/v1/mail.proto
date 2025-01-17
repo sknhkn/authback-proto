@@ -1,0 +1,18 @@
+syntax = "proto3";
+package mail.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message MailContent {
+  string from = 10;
+  string from_name = 11;
+  string subject = 30;
+  string plain_text_content = 31;
+  string html_content = 32;
+}
+
+message MailLog {
+  int64 response_status = 1;
+  string response_body = 2;
+  google.protobuf.Timestamp created_at = 1000;
+}

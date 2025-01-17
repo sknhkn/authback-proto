@@ -1,0 +1,73 @@
+syntax = "proto3";
+package user.v1;
+
+import "user/v1/user.proto";
+
+service UserService {
+  // ユーザ一覧取得
+  rpc ListUsers(ListUsersRequest) returns (ListUsersResponse) {}
+  // ユーザ取得
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
+  // ユーザ作成
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+  // ユーザ編集
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
+  // ユーザ削除
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
+  // ユーザ一括削除
+  rpc DeleteUsers(DeleteUsersRequest) returns (DeleteUsersResponse) {}
+  // ユーザインポート
+  rpc ImportUsers(ImportUsersRequest) returns (ImportUsersResponse) {}
+  // 利用規約の合意
+  rpc AgreeContract(AgreeContractRequest) returns (AgreeContractResponse) {}
+}
+
+message ListUsersRequest {
+  string tenant_id = 1;
+  string condition = 2;
+  string role = 3;
+  User.Status status = 4;
+  User.InviteStatus invite_status = 5;
+  User.Type user_type = 6;
+  string order_by = 900;
+  string order = 901;
+  int64 limit = 902;
+  int64 offset = 903;
+}
+message ListUsersResponse {
+  repeated User users = 1;
+  int64 count = 2;
+}
+message GetUserRequest {
+  string user_id = 1;
+  string email = 2;
+}
+message GetUserResponse {
+  User user = 1;
+}
+message CreateUserRequest {
+  User user = 1;
+}
+message CreateUserResponse {}
+message UpdateUserRequest {
+  User user = 1;
+}
+message UpdateUserResponse {}
+message DeleteUserRequest {
+  string user_id = 1;
+}
+message DeleteUserResponse {}
+message DeleteUsersRequest {
+  repeated string user_ids = 1;
+  string status = 3;
+}
+message DeleteUsersResponse {}
+message ImportUsersRequest {
+  repeated User users = 1;
+}
+message ImportUsersResponse {}
+
+message AgreeContractRequest {
+  string user_id = 1;
+}
+message AgreeContractResponse {}

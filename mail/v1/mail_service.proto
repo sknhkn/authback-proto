@@ -1,0 +1,25 @@
+syntax = "proto3";
+package mail.v1;
+
+import "mail/v1/mail.proto";
+
+service MailService {
+  // ユーザ招待メールの送信
+  rpc SendInviteMail(SendInviteMailRequest) returns (SendInviteMailResponse) {}
+  // パスワードリセットのメール送信
+  rpc SendPasswordResetMail(SendPasswordResetMailRequest) returns (SendPasswordResetMailResponse) {}
+}
+
+message SendInviteMailRequest {
+  string user_id = 1;
+  MailContent content = 10;
+}
+message SendInviteMailResponse {}
+
+message SendPasswordResetMailRequest {
+  string token = 1;
+  string to = 2;
+  string to_name = 3;
+  MailContent content = 10;
+}
+message SendPasswordResetMailResponse {}

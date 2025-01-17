@@ -1,0 +1,65 @@
+syntax = "proto3";
+package user.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message User {
+  string user_id = 1;
+  string tenant_id = 2;
+  Status status = 3;
+  string email = 4;
+  google.protobuf.Timestamp email_verified_at = 5;
+
+  string display_name = 10;
+  string photo_url = 11;
+  string personal_name = 12;
+  string organization_name = 13;
+  string branch_name = 14;
+  string postal_code = 20;
+  string prefectures = 21;
+  string city = 22;
+  string address1 = 23;
+  string address2 = 24;
+  string tel = 25;
+  string fax = 26;
+  string provider_id = 100;
+
+  google.protobuf.Timestamp created_at = 1000;
+  google.protobuf.Timestamp updated_at = 1001;
+  google.protobuf.Timestamp deleted_at = 1002;
+  google.protobuf.Timestamp contract_agreed_at = 1003;
+
+  google.protobuf.Timestamp last_login = 9001;
+  google.protobuf.Timestamp last_refresh = 9002;
+  google.protobuf.Timestamp password_reset_at = 9003;
+  google.protobuf.Timestamp last_invited_at = 9004;
+  InviteStatus last_invited_status = 9005;
+
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+    STATUS_ACTIVE = 1;
+    STATUS_INACTIVE = 2;
+  }
+  enum Type {
+    TYPE_UNSPECIFIED = 0;
+    TYPE_HOSPITAL = 1;
+    TYPE_CLINIC = 2;
+    TYPE_DENTAL = 3;
+    TYPE_PHARMACY = 4;
+    TYPE_OTHER = 5;
+  }
+  enum InviteStatus {
+    INVITE_STATUS_UNSPECIFIED = 0;
+    INVITE_STATUS_INVITED = 1;
+    INVITE_STATUS_NOT_INVITED = 2;
+    INVITE_STATUS_ERROR = 3;
+    INVITE_STATUS_NOT_INVITED_AND_ERROR = 4;
+  }
+}
+
+message UserPassword {
+  string user_id = 1;
+  string password_hash = 50;
+  string password_salt = 51;
+  google.protobuf.Timestamp created_at = 1000;
+}
