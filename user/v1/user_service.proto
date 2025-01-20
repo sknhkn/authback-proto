@@ -24,13 +24,13 @@ service UserService {
 
 message ListUsersRequest {
   string tenant_id = 1;
-  string condition = 2;
-  string role = 3;
-  User.Status status = 4;
-  User.InviteStatus invite_status = 5;
-  User.Type user_type = 6;
-  string order_by = 900;
-  string order = 901;
+  optional string condition = 2;
+  optional string role = 3;
+  optional bool is_deleted = 4;
+  optional InviteStatus invite_status = 5;
+  repeated User.Tag tags = 6;
+  optional string order_by = 900;
+  optional string order = 901;
   int64 limit = 902;
   int64 offset = 903;
 }
