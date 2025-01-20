@@ -1,5 +1,5 @@
 syntax = "proto3";
-package mail.v1;
+package authback.mail.v1;
 
 import "google/protobuf/timestamp.proto";
 

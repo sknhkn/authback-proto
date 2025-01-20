@@ -1,7 +1,7 @@
 syntax = "proto3";
-package mail.v1;
+package authback.mail.v1;
 
-import "mail/v1/mail.proto";
+import "authback/mail/v1/mail.proto";
 
 service MailService {
   // ユーザ招待メールの送信

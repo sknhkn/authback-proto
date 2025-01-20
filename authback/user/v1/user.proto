@@ -1,8 +1,8 @@
 syntax = "proto3";
-package user.v1;
+package authback.user.v1;
 
+import "authback/user/v1/common.proto";
 import "google/protobuf/timestamp.proto";
-import "user/v1/common.proto";
 
 message User {
   string user_id = 1;
