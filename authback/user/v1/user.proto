@@ -7,23 +7,23 @@ import "google/protobuf/timestamp.proto";
 message User {
   string user_id = 1;
   string tenant_id = 2;
-
+  string display_name = 10;
   Profile profile = 100;
   optional Organization organization = 101;
-  repeated Tag tags = 200;
+  repeated UserTag tags = 200;
 
   google.protobuf.Timestamp created_at = 1000;
   google.protobuf.Timestamp updated_at = 1001;
   optional google.protobuf.Timestamp deleted_at = 1002;
+}
 
-  enum Tag {
-    TAG_UNSPECIFIED = 0;
-    TAG_HOSPITAL = 1;
-    TAG_CLINIC = 2;
-    TAG_DENTAL = 3;
-    TAG_PHARMACY = 4;
-    TAG_OTHER = 5;
-  }
+enum UserTag {
+  USER_TAG_UNSPECIFIED = 0;
+  USER_TAG_HOSPITAL = 1;
+  USER_TAG_CLINIC = 2;
+  USER_TAG_DENTAL = 3;
+  USER_TAG_PHARMACY = 4;
+  USER_TAG_OTHER = 5;
 }
 
 message UserPassword {
