@@ -31,7 +31,7 @@ message ListUsersRequest {
   optional string role = 3;
   optional bool is_deleted = 4;
   optional InviteStatus invite_status = 5;
-  repeated User.Tag tags = 6;
+  repeated UserTag tags = 6;
   optional string order_by = 900;
   optional string order = 901;
   int64 limit = 902;
