@@ -32,6 +32,7 @@ message ListUsersRequest {
   optional bool is_deleted = 4;
   optional InviteStatus invite_status = 5;
   repeated UserTag tags = 6;
+  optional bool include_deleted = 100;
   optional string order_by = 900;
   optional string order = 901;
   int64 limit = 902;
@@ -43,6 +44,7 @@ message ListUsersResponse {
 }
 message GetUserRequest {
   string user_id = 1;
+  optional bool include_deleted = 100;
 }
 message GetUserResponse {
   User user = 1;
@@ -50,6 +52,7 @@ message GetUserResponse {
 message GetUserByEmailRequest {
   string tenant_id = 1;
   string email = 2;
+  optional bool include_deleted = 100;
 }
 message GetUserByEmailResponse {
   User user = 1;
@@ -68,7 +71,7 @@ message UpdateUserResponse {
 }
 message SoftDeleteUserRequest {
   string user_id = 1;
-  bool is_delete = 2;
+  bool is_deleted = 2;
 }
 message SoftDeleteUserResponse {
   google.protobuf.Timestamp commited_at = 10000;
@@ -76,7 +79,9 @@ message SoftDeleteUserResponse {
 message DeleteUserRequest {
   string user_id = 1;
 }
-message DeleteUserResponse {}
+message DeleteUserResponse {
+  google.protobuf.Timestamp commited_at = 10000;
+}
 message ImportUsersRequest {
   repeated User users = 1;
 }
