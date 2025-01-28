@@ -2,20 +2,23 @@ syntax = "proto3";
 package authback.user.v1;
 
 import "authback/user/v1/user.proto";
+import "google/protobuf/timestamp.proto";
 
 service UserService {
   // ユーザ一覧取得
   rpc ListUsers(ListUsersRequest) returns (ListUsersResponse) {}
   // ユーザ取得
   rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
+  // ユーザ取得
+  rpc GetUserByEmail(GetUserByEmailRequest) returns (GetUserByEmailResponse) {}
   // ユーザ作成
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
   // ユーザ編集
   rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
+  // ユーザ論理削除
+  rpc SoftDeleteUser(SoftDeleteUserRequest) returns (SoftDeleteUserResponse) {}
   // ユーザ削除
   rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
-  // ユーザ一括削除
-  rpc DeleteUsers(DeleteUsersRequest) returns (DeleteUsersResponse) {}
   // ユーザインポート
   rpc ImportUsers(ImportUsersRequest) returns (ImportUsersResponse) {}
   // 利用規約の合意
@@ -40,28 +43,40 @@ message ListUsersResponse {
 }
 message GetUserRequest {
   string user_id = 1;
-  string email = 2;
 }
 message GetUserResponse {
+  User user = 1;
+}
+message GetUserByEmailRequest {
+  string tenant_id = 1;
+  string email = 2;
+}
+message GetUserByEmailResponse {
   User user = 1;
 }
 message CreateUserRequest {
   User user = 1;
 }
-message CreateUserResponse {}
+message CreateUserResponse {
+  google.protobuf.Timestamp commited_at = 10000;
+}
 message UpdateUserRequest {
   User user = 1;
 }
-message UpdateUserResponse {}
+message UpdateUserResponse {
+  google.protobuf.Timestamp commited_at = 10000;
+}
+message SoftDeleteUserRequest {
+  string user_id = 1;
+  bool is_delete = 2;
+}
+message SoftDeleteUserResponse {
+  google.protobuf.Timestamp commited_at = 10000;
+}
 message DeleteUserRequest {
   string user_id = 1;
 }
 message DeleteUserResponse {}
-message DeleteUsersRequest {
-  repeated string user_ids = 1;
-  string status = 3;
-}
-message DeleteUsersResponse {}
 message ImportUsersRequest {
   repeated User users = 1;
 }
@@ -70,4 +85,6 @@ message ImportUsersResponse {}
 message AgreeContractRequest {
   string user_id = 1;
 }
-message AgreeContractResponse {}
+message AgreeContractResponse {
+  google.protobuf.Timestamp commited_at = 10000;
+}
