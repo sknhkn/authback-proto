@@ -26,13 +26,6 @@ enum UserTag {
   USER_TAG_OTHER = 5;
 }
 
-message UserPassword {
-  string user_id = 1;
-  string password_hash = 50;
-  string password_salt = 51;
-  google.protobuf.Timestamp created_at = 1000;
-}
-
 enum InviteStatus {
   INVITE_STATUS_UNSPECIFIED = 0;
   INVITE_STATUS_INVITED = 1;
