@@ -11,6 +11,8 @@ service UserService {
   rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
   // ユーザ取得
   rpc GetUserByEmail(GetUserByEmailRequest) returns (GetUserByEmailResponse) {}
+  // ユーザ取得
+  rpc GetUserByAccount(GetUserByAccountRequest) returns (GetUserByAccountResponse) {}
   // ユーザ作成
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
   // ユーザ編集
@@ -23,6 +25,18 @@ service UserService {
   rpc ImportUsers(ImportUsersRequest) returns (ImportUsersResponse) {}
   // 利用規約の合意
   rpc AgreeContract(AgreeContractRequest) returns (AgreeContractResponse) {}
+  // アカウントのリンク
+  rpc LinkAccount(LinkAccountRequest) returns (LinkAccountResponse) {}
+  // アカウントのリンク解除
+  rpc UnlinkAccount(UnlinkAccountRequest) returns (UnlinkAccountResponse) {}
+
+  rpc CreateSession(CreateSessionRequest) returns (CreateSessionResponse) {}
+  rpc GetSessionAndUser(GetSessionAndUserRequest) returns (GetSessionAndUserResponse) {}
+  rpc UpdateSession(UpdateSessionRequest) returns (UpdateSessionResponse) {}
+  rpc DeleteSession(DeleteSessionRequest) returns (DeleteSessionResponse) {}
+  rpc CreateVerificationToken(CreateVerificationTokenRequest) returns (CreateVerificationTokenResponse) {}
+  rpc UseVerificationToken(UseVerificationTokenRequest) returns (UseVerificationTokenResponse) {}
+  rpc GetAccount(GetAccountRequest) returns (GetAccountResponse) {}
 }
 
 message ListUsersRequest {
@@ -55,6 +69,15 @@ message GetUserByEmailRequest {
   optional bool include_deleted = 100;
 }
 message GetUserByEmailResponse {
+  User user = 1;
+}
+message GetUserByAccountRequest {
+  string tenant_id = 1;
+  string provider_account_id = 2;
+  string provider = 3;
+  optional bool include_deleted = 100;
+}
+message GetUserByAccountResponse {
   User user = 1;
 }
 message CreateUserRequest {
@@ -93,3 +116,32 @@ message AgreeContractRequest {
 message AgreeContractResponse {
   google.protobuf.Timestamp commited_at = 10000;
 }
+message LinkAccountRequest {
+  Account account = 1;
+}
+message LinkAccountResponse {
+  google.protobuf.Timestamp commited_at = 10000;
+}
+message UnlinkAccountRequest {
+  string tenant_id = 1;
+  string provider_account_id = 2;
+  string provider = 3;
+}
+message UnlinkAccountResponse {
+  google.protobuf.Timestamp commited_at = 10000;
+}
+
+message CreateSessionRequest {}
+message CreateSessionResponse {}
+message GetSessionAndUserRequest {}
+message GetSessionAndUserResponse {}
+message UpdateSessionRequest {}
+message UpdateSessionResponse {}
+message DeleteSessionRequest {}
+message DeleteSessionResponse {}
+message CreateVerificationTokenRequest {}
+message CreateVerificationTokenResponse {}
+message UseVerificationTokenRequest {}
+message UseVerificationTokenResponse {}
+message GetAccountRequest {}
+message GetAccountResponse {}
