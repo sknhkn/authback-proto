@@ -131,17 +131,50 @@ message UnlinkAccountResponse {
   google.protobuf.Timestamp commited_at = 10000;
 }
 
-message CreateSessionRequest {}
-message CreateSessionResponse {}
-message GetSessionAndUserRequest {}
-message GetSessionAndUserResponse {}
-message UpdateSessionRequest {}
-message UpdateSessionResponse {}
-message DeleteSessionRequest {}
-message DeleteSessionResponse {}
-message CreateVerificationTokenRequest {}
-message CreateVerificationTokenResponse {}
-message UseVerificationTokenRequest {}
-message UseVerificationTokenResponse {}
-message GetAccountRequest {}
-message GetAccountResponse {}
+message CreateSessionRequest {
+  Session session = 1;
+}
+message CreateSessionResponse {
+  google.protobuf.Timestamp commited_at = 10000;
+}
+message GetSessionAndUserRequest {
+  string session_token = 1;
+}
+message GetSessionAndUserResponse {
+  Session session = 1;
+  User user = 2;
+}
+message UpdateSessionRequest {
+  Session session = 1;
+}
+message UpdateSessionResponse {
+  google.protobuf.Timestamp commited_at = 10000;
+}
+message DeleteSessionRequest {
+  string session_token = 1;
+}
+message DeleteSessionResponse {
+  google.protobuf.Timestamp commited_at = 10000;
+}
+message CreateVerificationTokenRequest {
+  VerificationToken verification_token = 1;
+}
+message CreateVerificationTokenResponse {
+  google.protobuf.Timestamp commited_at = 10000;
+}
+message UseVerificationTokenRequest {
+  string identiire = 1;
+  string token = 2;
+}
+message UseVerificationTokenResponse {
+  google.protobuf.Timestamp commited_at = 10000;
+}
+message GetAccountRequest {
+  string tenant_id = 1;
+  string provider_account_id = 2;
+  string provider = 3;
+  optional bool include_deleted = 100;
+}
+message GetAccountResponse {
+  Account account = 1;
+}
