@@ -25,7 +25,7 @@ message Profile {
   optional Address address = 100;
   optional string tel = 101;
   optional string fax = 102;
-  string email = 200;
+  optional string email = 200;
   optional string photo_url = 201;
 }
 

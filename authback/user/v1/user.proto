@@ -9,8 +9,8 @@ message User {
   string tenant_id = 2;
   string email = 3;
   optional google.protobuf.Timestamp email_verified_at = 4;
-  string display_name = 10;
-  Profile profile = 100;
+  optional string display_name = 10;
+  optional Profile profile = 100;
   optional Organization organization = 101;
   repeated UserTag tags = 200;
 
@@ -48,7 +48,7 @@ message Meta {
 }
 
 message Account {
-  optional string user_id = 1;
+  string user_id = 1;
   string tenant_id = 2;
 
   string provider = 50;

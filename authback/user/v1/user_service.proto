@@ -84,12 +84,14 @@ message CreateUserRequest {
   User user = 1;
 }
 message CreateUserResponse {
+  User user = 1;
   google.protobuf.Timestamp commited_at = 10000;
 }
 message UpdateUserRequest {
   User user = 1;
 }
 message UpdateUserResponse {
+  User user = 1;
   google.protobuf.Timestamp commited_at = 10000;
 }
 message SoftDeleteUserRequest {
@@ -97,12 +99,14 @@ message SoftDeleteUserRequest {
   bool is_deleted = 2;
 }
 message SoftDeleteUserResponse {
+  User user = 1;
   google.protobuf.Timestamp commited_at = 10000;
 }
 message DeleteUserRequest {
   string user_id = 1;
 }
 message DeleteUserResponse {
+  User user = 1;
   google.protobuf.Timestamp commited_at = 10000;
 }
 message ImportUsersRequest {
@@ -120,6 +124,7 @@ message LinkAccountRequest {
   Account account = 1;
 }
 message LinkAccountResponse {
+  Account account = 1;
   google.protobuf.Timestamp commited_at = 10000;
 }
 message UnlinkAccountRequest {
@@ -128,6 +133,7 @@ message UnlinkAccountRequest {
   string provider = 3;
 }
 message UnlinkAccountResponse {
+  Account account = 1;
   google.protobuf.Timestamp commited_at = 10000;
 }
 
@@ -135,6 +141,7 @@ message CreateSessionRequest {
   Session session = 1;
 }
 message CreateSessionResponse {
+  Session session = 1;
   google.protobuf.Timestamp commited_at = 10000;
 }
 message GetSessionAndUserRequest {
@@ -148,25 +155,29 @@ message UpdateSessionRequest {
   Session session = 1;
 }
 message UpdateSessionResponse {
+  Session session = 1;
   google.protobuf.Timestamp commited_at = 10000;
 }
 message DeleteSessionRequest {
   string session_token = 1;
 }
 message DeleteSessionResponse {
+  Session session = 1;
   google.protobuf.Timestamp commited_at = 10000;
 }
 message CreateVerificationTokenRequest {
   VerificationToken verification_token = 1;
 }
 message CreateVerificationTokenResponse {
+  VerificationToken verification_token = 1;
   google.protobuf.Timestamp commited_at = 10000;
 }
 message UseVerificationTokenRequest {
-  string identiire = 1;
+  string identifier = 1;
   string token = 2;
 }
 message UseVerificationTokenResponse {
+  VerificationToken verification_token = 1;
   google.protobuf.Timestamp commited_at = 10000;
 }
 message GetAccountRequest {
