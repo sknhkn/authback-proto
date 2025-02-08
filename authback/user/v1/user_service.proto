@@ -2,6 +2,7 @@ syntax = "proto3";
 package authback.user.v1;
 
 import "authback/user/v1/user.proto";
+import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 
 service UserService {
@@ -89,6 +90,7 @@ message CreateUserResponse {
 }
 message UpdateUserRequest {
   User user = 1;
+  google.protobuf.FieldMask field_mask = 3000;
 }
 message UpdateUserResponse {
   User user = 1;
