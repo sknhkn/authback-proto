@@ -74,7 +74,7 @@ message Session {
 }
 
 message VerificationToken {
-  string identiire = 1;
+  string identifier = 1;
   google.protobuf.Timestamp expires_at = 2;
   string token = 3;
 }
