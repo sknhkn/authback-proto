@@ -44,11 +44,12 @@ message Meta {
   optional InviteStatus last_invited_status = 9005;
 }
 
-message UserAccount {
-  string user_id = 1;
+message Account {
+  string provider_account_id = 1;
   string provider = 2;
-  string provider_account_id = 3;
-  string type = 10;
+  string tenant_id = 3;
+  string user_id = 4;
+  string type = 5;
 
   optional string refresh_token = 100;
   optional string access_token = 101;

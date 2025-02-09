@@ -26,13 +26,13 @@ service UserService {
   rpc ImportUsers(ImportUsersRequest) returns (ImportUsersResponse) {}
 
   // アカウントの取得
-  rpc ListUserAccounts(ListUserAccountsRequest) returns (ListUserAccountsResponse) {}
+  rpc ListAccounts(ListAccountsRequest) returns (ListAccountsResponse) {}
   // アカウントの取得
-  rpc GetUserAccount(GetUserAccountRequest) returns (GetUserAccountResponse) {}
+  rpc GetAccount(GetAccountRequest) returns (GetAccountResponse) {}
   // アカウントのリンク
-  rpc CreateUserAccount(CreateUserAccountRequest) returns (CreateUserAccountResponse) {}
+  rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {}
   // アカウントのリンク解除
-  rpc DeleteUserAccount(DeleteUserAccountRequest) returns (DeleteUserAccountResponse) {}
+  rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {}
 }
 
 message ListUsersRequest {
@@ -111,31 +111,31 @@ message ImportUsersRequest {
 }
 message ImportUsersResponse {}
 
-message ListUserAccountsRequest {
+message ListAccountsRequest {
   string user_id = 1;
 }
-message ListUserAccountsResponse {
-  repeated UserAccount user_accounts = 1;
+message ListAccountsResponse {
+  repeated Account accounts = 1;
 }
-message GetUserAccountRequest {
+message GetAccountRequest {
   string user_id = 1;
   string provider = 2;
   string provider_account_id = 3;
 }
-message GetUserAccountResponse {
-  UserAccount user_account = 1;
+message GetAccountResponse {
+  Account account = 1;
 }
-message CreateUserAccountRequest {
-  UserAccount user_account = 1;
+message CreateAccountRequest {
+  Account account = 1;
 }
-message CreateUserAccountResponse {
+message CreateAccountResponse {
   google.protobuf.Timestamp commited_at = 10000;
 }
-message DeleteUserAccountRequest {
+message DeleteAccountRequest {
   string user_id = 1;
   string provider = 2;
   string provider_account_id = 3;
 }
-message DeleteUserAccountResponse {
+message DeleteAccountResponse {
   google.protobuf.Timestamp commited_at = 10000;
 }
