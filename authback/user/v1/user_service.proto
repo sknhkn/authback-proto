@@ -118,9 +118,9 @@ message ListAccountsResponse {
   repeated Account accounts = 1;
 }
 message GetAccountRequest {
-  string user_id = 1;
+  string provider_account_id = 1;
   string provider = 2;
-  string provider_account_id = 3;
+  string tenant_id = 3;
 }
 message GetAccountResponse {
   Account account = 1;
@@ -132,9 +132,9 @@ message CreateAccountResponse {
   google.protobuf.Timestamp commited_at = 10000;
 }
 message DeleteAccountRequest {
-  string user_id = 1;
+  string provider_account_id = 1;
   string provider = 2;
-  string provider_account_id = 3;
+  string tenant_id = 3;
 }
 message DeleteAccountResponse {
   google.protobuf.Timestamp commited_at = 10000;
