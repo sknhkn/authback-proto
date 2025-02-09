@@ -1,0 +1,12 @@
+syntax = "proto3";
+package authback.session.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message Session {
+  string session_id = 1;
+  string user_id = 2;
+  google.protobuf.Timestamp expires_at = 3;
+  google.protobuf.Timestamp created_at = 1000;
+  google.protobuf.Timestamp updated_at = 1001;
+}

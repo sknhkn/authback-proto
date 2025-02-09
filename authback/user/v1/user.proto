@@ -1,7 +1,6 @@
 syntax = "proto3";
 package authback.user.v1;
 
-import "authback/user/v1/common.proto";
 import "google/protobuf/timestamp.proto";
 
 message User {
@@ -9,10 +8,8 @@ message User {
   string tenant_id = 2;
   string email = 3;
   optional google.protobuf.Timestamp email_verified_at = 4;
-  optional string display_name = 10;
-  optional Profile profile = 100;
-  optional Organization organization = 101;
-  repeated UserTag tags = 200;
+  optional string name = 5;
+  optional string image = 6;
 
   google.protobuf.Timestamp created_at = 1000;
   google.protobuf.Timestamp updated_at = 1001;
@@ -47,13 +44,11 @@ message Meta {
   optional InviteStatus last_invited_status = 9005;
 }
 
-message Account {
+message UserAccount {
   string user_id = 1;
-  string tenant_id = 2;
-
-  string provider = 50;
-  string provider_account_id = 51;
-  string type = 52;
+  string provider = 2;
+  string provider_account_id = 3;
+  string type = 10;
 
   optional string refresh_token = 100;
   optional string access_token = 101;
@@ -64,17 +59,4 @@ message Account {
   optional string session_state = 106;
 
   google.protobuf.Timestamp created_at = 1000;
-  optional google.protobuf.Timestamp deleted_at = 1002;
-}
-
-message Session {
-  string session_token = 1;
-  string user_id = 2;
-  google.protobuf.Timestamp expires_at = 3;
-}
-
-message VerificationToken {
-  string identifier = 1;
-  google.protobuf.Timestamp expires_at = 2;
-  string token = 3;
 }

@@ -1,0 +1,46 @@
+syntax = "proto3";
+package authback.session.v1;
+
+import "authback/session/v1/session.proto";
+import "authback/user/v1/user.proto";
+import "google/protobuf/timestamp.proto";
+
+service SessionService {
+  rpc GetSession(GetSessionRequest) returns (GetSessionResponse) {}
+  rpc GetSessionAndUser(GetSessionAndUserRequest) returns (GetSessionAndUserResponse) {}
+  rpc CreateSession(CreateSessionRequest) returns (CreateSessionResponse) {}
+  rpc UpdateSession(UpdateSessionRequest) returns (UpdateSessionResponse) {}
+  rpc DeleteSession(DeleteSessionRequest) returns (DeleteSessionResponse) {}
+}
+
+message GetSessionRequest {
+  string session_id = 1;
+}
+message GetSessionResponse {
+  Session session = 1;
+}
+message GetSessionAndUserRequest {
+  string session_id = 1;
+}
+message GetSessionAndUserResponse {
+  Session session = 1;
+  user.v1.User user = 2;
+}
+message CreateSessionRequest {
+  Session session = 1;
+}
+message CreateSessionResponse {
+  google.protobuf.Timestamp commited_at = 10000;
+}
+message UpdateSessionRequest {
+  Session session = 1;
+}
+message UpdateSessionResponse {
+  google.protobuf.Timestamp commited_at = 10000;
+}
+message DeleteSessionRequest {
+  string session_id = 1;
+}
+message DeleteSessionResponse {
+  google.protobuf.Timestamp commited_at = 10000;
+}

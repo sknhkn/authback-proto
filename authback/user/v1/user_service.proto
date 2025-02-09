@@ -24,20 +24,15 @@ service UserService {
   rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
   // ユーザインポート
   rpc ImportUsers(ImportUsersRequest) returns (ImportUsersResponse) {}
-  // 利用規約の合意
-  rpc AgreeContract(AgreeContractRequest) returns (AgreeContractResponse) {}
-  // アカウントのリンク
-  rpc LinkAccount(LinkAccountRequest) returns (LinkAccountResponse) {}
-  // アカウントのリンク解除
-  rpc UnlinkAccount(UnlinkAccountRequest) returns (UnlinkAccountResponse) {}
 
-  rpc CreateSession(CreateSessionRequest) returns (CreateSessionResponse) {}
-  rpc GetSessionAndUser(GetSessionAndUserRequest) returns (GetSessionAndUserResponse) {}
-  rpc UpdateSession(UpdateSessionRequest) returns (UpdateSessionResponse) {}
-  rpc DeleteSession(DeleteSessionRequest) returns (DeleteSessionResponse) {}
-  rpc CreateVerificationToken(CreateVerificationTokenRequest) returns (CreateVerificationTokenResponse) {}
-  rpc UseVerificationToken(UseVerificationTokenRequest) returns (UseVerificationTokenResponse) {}
-  rpc GetAccount(GetAccountRequest) returns (GetAccountResponse) {}
+  // アカウントの取得
+  rpc ListUserAccounts(ListUserAccountsRequest) returns (ListUserAccountsResponse) {}
+  // アカウントの取得
+  rpc GetUserAccount(GetUserAccountRequest) returns (GetUserAccountResponse) {}
+  // アカウントのリンク
+  rpc CreateUserAccount(CreateUserAccountRequest) returns (CreateUserAccountResponse) {}
+  // アカウントのリンク解除
+  rpc DeleteUserAccount(DeleteUserAccountRequest) returns (DeleteUserAccountResponse) {}
 }
 
 message ListUsersRequest {
@@ -90,7 +85,7 @@ message CreateUserResponse {
 }
 message UpdateUserRequest {
   User user = 1;
-  google.protobuf.FieldMask field_mask = 3000;
+  google.protobuf.FieldMask update_mask = 3000;
 }
 message UpdateUserResponse {
   User user = 1;
@@ -116,78 +111,31 @@ message ImportUsersRequest {
 }
 message ImportUsersResponse {}
 
-message AgreeContractRequest {
+message ListUserAccountsRequest {
   string user_id = 1;
 }
-message AgreeContractResponse {
+message ListUserAccountsResponse {
+  repeated UserAccount user_accounts = 1;
+}
+message GetUserAccountRequest {
+  string user_id = 1;
+  string provider = 2;
+  string provider_account_id = 3;
+}
+message GetUserAccountResponse {
+  UserAccount user_account = 1;
+}
+message CreateUserAccountRequest {
+  UserAccount user_account = 1;
+}
+message CreateUserAccountResponse {
   google.protobuf.Timestamp commited_at = 10000;
 }
-message LinkAccountRequest {
-  Account account = 1;
+message DeleteUserAccountRequest {
+  string user_id = 1;
+  string provider = 2;
+  string provider_account_id = 3;
 }
-message LinkAccountResponse {
-  Account account = 1;
+message DeleteUserAccountResponse {
   google.protobuf.Timestamp commited_at = 10000;
-}
-message UnlinkAccountRequest {
-  string tenant_id = 1;
-  string provider_account_id = 2;
-  string provider = 3;
-}
-message UnlinkAccountResponse {
-  Account account = 1;
-  google.protobuf.Timestamp commited_at = 10000;
-}
-
-message CreateSessionRequest {
-  Session session = 1;
-}
-message CreateSessionResponse {
-  Session session = 1;
-  google.protobuf.Timestamp commited_at = 10000;
-}
-message GetSessionAndUserRequest {
-  string session_token = 1;
-}
-message GetSessionAndUserResponse {
-  Session session = 1;
-  User user = 2;
-}
-message UpdateSessionRequest {
-  Session session = 1;
-}
-message UpdateSessionResponse {
-  Session session = 1;
-  google.protobuf.Timestamp commited_at = 10000;
-}
-message DeleteSessionRequest {
-  string session_token = 1;
-}
-message DeleteSessionResponse {
-  Session session = 1;
-  google.protobuf.Timestamp commited_at = 10000;
-}
-message CreateVerificationTokenRequest {
-  VerificationToken verification_token = 1;
-}
-message CreateVerificationTokenResponse {
-  VerificationToken verification_token = 1;
-  google.protobuf.Timestamp commited_at = 10000;
-}
-message UseVerificationTokenRequest {
-  string identifier = 1;
-  string token = 2;
-}
-message UseVerificationTokenResponse {
-  VerificationToken verification_token = 1;
-  google.protobuf.Timestamp commited_at = 10000;
-}
-message GetAccountRequest {
-  string tenant_id = 1;
-  string provider_account_id = 2;
-  string provider = 3;
-  optional bool include_deleted = 100;
-}
-message GetAccountResponse {
-  Account account = 1;
 }

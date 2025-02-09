@@ -16,3 +16,11 @@ message MailLog {
   string response_body = 2;
   google.protobuf.Timestamp created_at = 1000;
 }
+
+message VerificationToken {
+  string identifier = 1;
+  string token = 2;
+  google.protobuf.Timestamp expires_at = 3;
+  google.protobuf.Timestamp created_at = 1000;
+  optional google.protobuf.Timestamp deleted_at = 1002;
+}
