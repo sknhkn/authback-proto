@@ -80,7 +80,6 @@ message CreateUserRequest {
   User user = 1;
 }
 message CreateUserResponse {
-  User user = 1;
   google.protobuf.Timestamp commited_at = 10000;
 }
 message UpdateUserRequest {
@@ -88,7 +87,6 @@ message UpdateUserRequest {
   google.protobuf.FieldMask update_mask = 3000;
 }
 message UpdateUserResponse {
-  User user = 1;
   google.protobuf.Timestamp commited_at = 10000;
 }
 message SoftDeleteUserRequest {
@@ -96,14 +94,12 @@ message SoftDeleteUserRequest {
   bool is_deleted = 2;
 }
 message SoftDeleteUserResponse {
-  User user = 1;
   google.protobuf.Timestamp commited_at = 10000;
 }
 message DeleteUserRequest {
   string user_id = 1;
 }
 message DeleteUserResponse {
-  User user = 1;
   google.protobuf.Timestamp commited_at = 10000;
 }
 message ImportUsersRequest {

@@ -16,34 +16,6 @@ message User {
   optional google.protobuf.Timestamp deleted_at = 1002;
 }
 
-enum UserTag {
-  USER_TAG_UNSPECIFIED = 0;
-  USER_TAG_HOSPITAL = 1;
-  USER_TAG_CLINIC = 2;
-  USER_TAG_DENTAL = 3;
-  USER_TAG_PHARMACY = 4;
-  USER_TAG_OTHER = 5;
-}
-
-enum InviteStatus {
-  INVITE_STATUS_UNSPECIFIED = 0;
-  INVITE_STATUS_INVITED = 1;
-  INVITE_STATUS_NOT_INVITED = 2;
-  INVITE_STATUS_ERROR = 3;
-  INVITE_STATUS_NOT_INVITED_AND_ERROR = 4;
-}
-
-message Meta {
-  optional google.protobuf.Timestamp email_verified_at = 5;
-  optional google.protobuf.Timestamp contract_agreed_at = 1003;
-
-  optional google.protobuf.Timestamp last_login = 9001;
-  optional google.protobuf.Timestamp last_refresh = 9002;
-  optional google.protobuf.Timestamp password_reset_at = 9003;
-  optional google.protobuf.Timestamp last_invited_at = 9004;
-  optional InviteStatus last_invited_status = 9005;
-}
-
 message Account {
   string provider_account_id = 1;
   string provider = 2;

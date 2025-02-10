@@ -9,4 +9,5 @@ message Session {
   google.protobuf.Timestamp expires_at = 3;
   google.protobuf.Timestamp created_at = 1000;
   google.protobuf.Timestamp updated_at = 1001;
+  optional google.protobuf.Timestamp deleted_at = 1002;
 }
