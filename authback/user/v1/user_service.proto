@@ -35,18 +35,20 @@ service UserService {
   rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {}
 }
 
+enum DeleteCondition {
+  DELETE_CONDITION_UNSPECIFIED = 0;
+  DELETE_CONDITION_EXCLUDE_DELETED = 1;
+  DELETE_CONDITION_INCLUDE_DELETED = 2;
+  DELETE_CONDITION_ONLY_DELETED = 3;
+}
 message ListUsersRequest {
   string tenant_id = 1;
   optional string condition = 2;
-  optional string role = 3;
-  optional bool is_deleted = 4;
-  optional InviteStatus invite_status = 5;
-  repeated UserTag tags = 6;
-  optional bool include_deleted = 100;
+  optional DeleteCondition delete_condition = 100;
   optional string order_by = 900;
   optional string order = 901;
-  int64 limit = 902;
-  int64 offset = 903;
+  optional int64 limit = 902;
+  optional int64 offset = 903;
 }
 message ListUsersResponse {
   repeated User users = 1;
@@ -54,7 +56,7 @@ message ListUsersResponse {
 }
 message GetUserRequest {
   string user_id = 1;
-  optional bool include_deleted = 100;
+  optional DeleteCondition delete_condition = 100;
 }
 message GetUserResponse {
   User user = 1;
@@ -62,7 +64,7 @@ message GetUserResponse {
 message GetUserByEmailRequest {
   string tenant_id = 1;
   string email = 2;
-  optional bool include_deleted = 100;
+  optional DeleteCondition delete_condition = 100;
 }
 message GetUserByEmailResponse {
   User user = 1;
@@ -71,7 +73,7 @@ message GetUserByAccountRequest {
   string tenant_id = 1;
   string provider_account_id = 2;
   string provider = 3;
-  optional bool include_deleted = 100;
+  optional DeleteCondition delete_condition = 100;
 }
 message GetUserByAccountResponse {
   User user = 1;
