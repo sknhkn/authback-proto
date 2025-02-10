@@ -11,7 +11,7 @@ message User {
   optional string name = 5;
   optional string image = 6;
 
-  optional bool active = 9999;
+  bool active = 9999;
   google.protobuf.Timestamp created_at = 1000;
   google.protobuf.Timestamp updated_at = 1001;
 }
