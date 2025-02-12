@@ -3,6 +3,8 @@ version: v2
 modules:
   - path: .
     name: buf.build/sknhkn/authback
+deps:
+  - buf.build/sknhkn/protobuf:v0.1.0
 lint:
   use:
     - STANDARD

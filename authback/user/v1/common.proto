@@ -3,42 +3,6 @@ package authback.user.v1;
 
 import "google/protobuf/timestamp.proto";
 
-enum Gender {
-  GENDER_UNSPECIFIED = 0;
-  GENDER_MALE = 1;
-  GENDER_FEMALE = 2;
-}
-
-message Address {
-  optional string postal_code = 20;
-  optional string prefectures = 21;
-  optional string city = 22;
-  optional string address1 = 23;
-  optional string address2 = 24;
-  optional double lat = 3000;
-  optional double lng = 3001;
-}
-
-message Profile {
-  optional string first_name = 10;
-  optional string family_name = 11;
-  optional Gender gender = 20;
-  optional string birth_date = 21;
-  optional Address address = 100;
-  optional string tel = 101;
-  optional string fax = 102;
-  optional string email = 200;
-  optional string photo_url = 201;
-}
-
-message Organization {
-  optional string name = 1;
-  optional string branch_name = 2;
-  optional Address address = 100;
-  optional string tel = 101;
-  optional string fax = 102;
-}
-
 enum UserTag {
   USER_TAG_UNSPECIFIED = 0;
   USER_TAG_HOSPITAL = 1;

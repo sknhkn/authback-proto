@@ -4,6 +4,7 @@ package authback.user.v1;
 import "authback/user/v1/user.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
+import "sknhkn/types/object_condition.proto";
 
 service UserService {
   // ユーザ一覧取得
@@ -33,17 +34,10 @@ service UserService {
   rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {}
 }
 
-enum ActiveCondition {
-  ACTIVE_CONDITION_UNSPECIFIED = 0;
-  ACTIVE_CONDITION_ACTIVE = 1;
-  ACTIVE_CONDITION_INACTIVE = 2;
-  ACTIVE_CONDITION_ALL = 3;
-}
-
 message ListUsersRequest {
   string tenant_id = 1;
   optional string condition = 2;
-  optional ActiveCondition active_condition = 100;
+  optional sknhkn.types.ObjectCondition object_condition = 100;
   optional string order_by = 900;
   optional string order = 901;
   optional int64 limit = 902;
@@ -55,7 +49,7 @@ message ListUsersResponse {
 }
 message GetUserRequest {
   string user_id = 1;
-  optional ActiveCondition active_condition = 100;
+  optional sknhkn.types.ObjectCondition object_condition = 100;
 }
 message GetUserResponse {
   User user = 1;
@@ -63,7 +57,7 @@ message GetUserResponse {
 message GetUserByEmailRequest {
   string tenant_id = 1;
   string email = 2;
-  optional ActiveCondition active_condition = 100;
+  optional sknhkn.types.ObjectCondition object_condition = 100;
 }
 message GetUserByEmailResponse {
   User user = 1;
@@ -72,7 +66,7 @@ message GetUserByAccountRequest {
   string tenant_id = 1;
   string provider_account_id = 2;
   string provider = 3;
-  optional ActiveCondition active_condition = 100;
+  optional sknhkn.types.ObjectCondition object_condition = 100;
 }
 message GetUserByAccountResponse {
   User user = 1;
